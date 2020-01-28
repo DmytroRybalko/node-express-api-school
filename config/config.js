@@ -1,12 +1,11 @@
-{
+module.exports = {
   "development": {
     "username": "me",
     "password": "password",
     "database": "high_school",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "port": 5432,
-    "operatorsAliases": false
+    "port": 5432
   },
   "test": {
     "username": "root",
