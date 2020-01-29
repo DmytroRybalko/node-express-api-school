@@ -23,7 +23,25 @@ module.exports = {
       .findAll({})
       .then((group) => res.status(201).send(group))
       .catch((error) => res.status(400).send(error));
-  }
+  },
 
- 
+  // GET a single group by id
+
+  getById(req, res) {
+    return Group
+      .findOne({
+        where : {
+          id : req.params.id
+        }
+      })
+      .then((group) => {
+        if (!group) {
+          return res.status(404).send({
+            message: 'group Not Found',
+          });
+        }
+        return res.status(200).send(group);
+      })
+      .catch((error) => res.status(400).send(error));
+    },
 };        
