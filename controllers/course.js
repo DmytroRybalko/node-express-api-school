@@ -73,6 +73,29 @@ module.exports = {
             .catch((error) => res.status(400).send(error));
         })
         .catch((error) => res.status(400).send(error));
+        },
+
+  // DELETE a course
+
+  delete(req, res) {
+    return Course
+      .findOne({
+        where : {
+          id : req.params.id
         }
-  
+      })
+      .then((course) => {
+        if (!course) {
+          return res.status(400).send({
+            message: 'Course Not Found',
+          });
+        }
+        return course
+          .destroy()
+          .then(() => res.status(204).send())
+          .catch((error) => res.status(400).send(error));
+      })
+      .catch((error) => res.status(400).send(error));
+  }
+
 };        

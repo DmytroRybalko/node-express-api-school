@@ -23,6 +23,7 @@ router.post('/course', courseController.add);
 router.get('/course', courseController.getAll);
 router.get('/course/:id', courseController.getById);
 router.put('/course/:id', courseController.update);
+router.delete('/course/:id', courseController.delete);
 
 /* Group Router */
 
