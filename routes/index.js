@@ -4,7 +4,7 @@ var router = express.Router();
 const studentController = require('../controllers').student;
 const courseController = require('../controllers').course;
 const groupController = require('../controllers').group;
-
+const lecturerController = require('../controllers').lecturer;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -34,6 +34,6 @@ router.put('/group/:id', groupController.update);
 router.delete('/group/:id', groupController.delete);
 
 /* Lecturer Router */
-
+router.post('/lecturer', lecturerController.add);
 
 module.exports = router;
