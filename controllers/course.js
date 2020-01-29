@@ -27,7 +27,7 @@ module.exports = {
       .catch((error) => res.status(400).send(error));  
   },
 
-   // GET a single course by id
+  // GET a single course by id
 
   getById(req, res) {
     return Course
@@ -47,9 +47,9 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
     },
 
-    // PUT updated data in an existing course
+  // PUT updated data in an existing course
   
-update(req, res) {
+  update(req, res) {
     return Course
       .findOne({
             where : {
