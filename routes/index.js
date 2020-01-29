@@ -31,6 +31,7 @@ router.post('/group', groupController.add);
 router.get('/group', groupController.getAll);
 router.get('/group/:id', groupController.getById);
 router.put('/group/:id', groupController.update);
+router.delete('/group/:id', groupController.delete);
 
 /* Lecturer Router */
 
