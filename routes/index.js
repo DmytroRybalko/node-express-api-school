@@ -37,6 +37,6 @@ router.delete('/group/:id', groupController.delete);
 router.post('/lecturer', lecturerController.add);
 router.get('/lecturer', lecturerController.getAll);
 router.get('/lecturer/:id', lecturerController.getById);
-
+router.put('/lecturer/:id', lecturerController.update);
 
 module.exports = router;

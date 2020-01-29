@@ -15,7 +15,7 @@ module.exports = {
        })
        .then((lecturer) => res.status(201).send(lecturer))
        .catch((error) => res.status(400).send(error));
-  },
+    },
 
   // GET all lecturer
 
@@ -24,7 +24,7 @@ module.exports = {
       .findAll({})
       .then((lecturer) => res.status(201).send(lecturer))
       .catch((error) => res.status(400).send(error));
-  },
+    },
 
   // GET a single lecturer by id
 
@@ -43,6 +43,34 @@ module.exports = {
         }
         return res.status(200).send(lecturer);
       })
+      .catch((error) => res.status(400).send(error));
+    },
+
+  // PUT updated data in an existing lecturer
+  
+  update(req, res) {
+    return Lecturer
+      .findOne({
+        where : {
+          id : req.params.id
+        }
+      })
+      .then((lecturer) => {
+        if (!lecturer) {
+          return res.status(404).send({
+            message: 'Lecturer Not Found',
+          });
+        }
+        return lecturer
+          .update({
+            title: req.body.title,
+            full_name: req.body.full_name,
+            status: req.body.status,
+            start_date: req.body.start_date
+          })
+          .then(() => res.status(200).send(lecturer))
+          .catch((error) => res.status(400).send(error));
+       })
       .catch((error) => res.status(400).send(error));
     },
 
