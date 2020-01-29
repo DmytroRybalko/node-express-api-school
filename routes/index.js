@@ -20,7 +20,7 @@ router.delete('/student/:id', studentController.delete);
 
 /* Course Router */
 router.post('/course', courseController.add);
-
+router.get('/course', courseController.getAll);
 
 /* Group Router */
 

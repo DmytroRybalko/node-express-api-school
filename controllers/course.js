@@ -16,6 +16,15 @@ module.exports = {
        })
        .then((course) => res.status(201).send(course))
        .catch((error) => res.status(400).send(error));
+  },
+
+  // GET all courses
+
+  getAll(req, res) {
+    return Course
+      .findAll({})
+      .then((course) => res.status(201).send(course))
+      .catch((error) => res.status(400).send(error));
   }
 
   
