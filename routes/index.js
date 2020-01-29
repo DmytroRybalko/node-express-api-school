@@ -38,5 +38,6 @@ router.post('/lecturer', lecturerController.add);
 router.get('/lecturer', lecturerController.getAll);
 router.get('/lecturer/:id', lecturerController.getById);
 router.put('/lecturer/:id', lecturerController.update);
+router.delete('/lecturer/:id', lecturerController.delete);
 
 module.exports = router;

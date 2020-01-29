@@ -74,5 +74,27 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
     },
 
+  // DELETE a lecturer
+
+  delete(req, res) {
+    return Lecturer
+      .findOne({
+        where : {
+          id : req.params.id
+        }
+      })
+      .then((lecturer) => {
+        if (!lecturer) {
+          return res.status(400).send({
+            message: 'Lecturer Not Found',
+          });
+        }
+        return lecturer
+          .destroy()
+          .then(() => res.status(204).send())
+          .catch((error) => res.status(400).send(error));
+      })
+      .catch((error) => res.status(400).send(error));
+    }
 
 };        
