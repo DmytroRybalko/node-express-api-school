@@ -14,6 +14,15 @@ module.exports = {
        })
        .then((group) => res.status(201).send(group))
        .catch((error) => res.status(400).send(error));
+  },
+
+  // GET all groups
+
+  getAll(req, res) {
+    return Group
+      .findAll({})
+      .then((group) => res.status(201).send(group))
+      .catch((error) => res.status(400).send(error));
   }
 
  
