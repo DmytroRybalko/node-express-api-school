@@ -25,7 +25,27 @@ module.exports = {
       .findAll({})
       .then((course) => res.status(201).send(course))
       .catch((error) => res.status(400).send(error));
-  }
+  },
+
+   // GET a single course by id
+
+   getById(req, res) {
+    return Course
+      .findOne({
+        where : {
+          id : req.params.id
+        }
+      })
+      .then((course) => {
+        if (!course) {
+          return res.status(404).send({
+            message: 'Course Not Found',
+          });
+        }
+        return res.status(200).send(course);
+      })
+      .catch((error) => res.status(400).send(error));
+    }
 
   
 };        
