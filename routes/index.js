@@ -30,6 +30,8 @@ router.delete('/course/:id', courseController.delete);
 router.post('/group', groupController.add);
 router.get('/group', groupController.getAll);
 router.get('/group/:id', groupController.getById);
+router.put('/group/:id', groupController.update);
+
 /* Lecturer Router */
 
 

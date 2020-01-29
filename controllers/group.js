@@ -44,4 +44,30 @@ module.exports = {
       })
       .catch((error) => res.status(400).send(error));
     },
+
+  // PUT updated data in an existing group
+  
+  update(req, res) {
+    return Group
+      .findOne({
+        where : {
+          id : req.params.id
+        }
+      })
+      .then((group) => {
+        if (!group) {
+          return res.status(404).send({
+            message: 'group Not Found',
+          });
+        }
+        return group
+          .update({
+            title: req.body.title,
+            department: req.body.department
+          })
+          .then(() => res.status(200).send(group))
+          .catch((error) => res.status(400).send(error));
+       })
+      .catch((error) => res.status(400).send(error));
+    },
 };        
