@@ -17,5 +17,14 @@ module.exports = {
        .catch((error) => res.status(400).send(error));
   },
 
+  // GET all lecturer
+
+  getAll(req, res) {
+    return Lecturer
+      .findAll({})
+      .then((lecturer) => res.status(201).send(lecturer))
+      .catch((error) => res.status(400).send(error));
+  },
+
 
 };        
