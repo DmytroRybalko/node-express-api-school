@@ -26,5 +26,25 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
   },
 
+  // GET a single lecturer by id
+
+  getById(req, res) {
+    return Lecturer
+      .findOne({
+        where : {
+          id : req.params.id
+        }
+      })
+      .then((lecturer) => {
+        if (!lecturer) {
+          return res.status(404).send({
+            message: 'Lecturer Not Found',
+          });
+        }
+        return res.status(200).send(lecturer);
+      })
+      .catch((error) => res.status(400).send(error));
+    },
+
 
 };        
