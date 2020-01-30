@@ -21,7 +21,16 @@ module.exports = {
 
   getAll(req, res) {
     return Lecturer
-      .findAll({})
+      .findAll({
+        include: [{
+          model: Course,
+          as: 'course'
+        }],
+        order: [
+          ['createdAt', 'DESC'],
+          [{ model: Course, as: 'course' }, 'createdAt', 'DESC'],
+        ],
+      })
       .then((lecturer) => res.status(201).send(lecturer))
       .catch((error) => res.status(400).send(error));
     },
@@ -33,7 +42,11 @@ module.exports = {
       .findOne({
         where : {
           id : req.params.id
-        }
+        },
+        include: [{
+          model: Course,
+          as: 'course'
+        }]
       })
       .then((lecturer) => {
         if (!lecturer) {
