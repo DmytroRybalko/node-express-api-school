@@ -1,17 +1,17 @@
-'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Student = sequelize.define('Student', {
     group_id: DataTypes.INTEGER,
     full_name: DataTypes.STRING,
     avg_grade: DataTypes.FLOAT,
-    miss_assign: DataTypes.STRING
+    miss_assign: DataTypes.STRING,
   }, {});
 
-  Student.associate = function(models) {
+  Student.associate = function (models) {
     Student.belongsTo(models.Group, {
       foreignKey: 'group_id',
-      as: 'group'
-    })
+      as: 'group',
+    });
   };
   return Student;
 };

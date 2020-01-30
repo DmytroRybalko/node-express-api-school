@@ -7,5 +7,5 @@ module.exports = {
   student,
   group,
   course,
-  lecturer
+  lecturer,
 };

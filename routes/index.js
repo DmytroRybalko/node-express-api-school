@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+
+const router = express.Router();
 
 const studentController = require('../controllers').student;
 const courseController = require('../controllers').course;
@@ -7,7 +8,7 @@ const groupController = require('../controllers').group;
 const lecturerController = require('../controllers').lecturer;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 

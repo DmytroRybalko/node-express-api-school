@@ -1,20 +1,20 @@
-'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
     title: DataTypes.STRING,
-    department: DataTypes.STRING
+    department: DataTypes.STRING,
   }, {});
 
-  Group.associate = function(models) {
+  Group.associate = function (models) {
     Group.hasMany(models.Student, {
       foreignKey: 'group_id',
-      as: 'students'
+      as: 'students',
     });
     Group.belongsToMany(models.Course, {
       through: 'GroupCourse',
       as: 'courses',
-      foreignKey: 'group_id'
-    })
+      foreignKey: 'group_id',
+    });
   };
   return Group;
 };

@@ -1,25 +1,26 @@
-const Lecturer = require('../models').Lecturer;
-const Course = require('../models').Course;
+const moment = require('moment');
+const { Lecturer } = require('../models');
+const { Course } = require('../models');
 
 const models = require('../models');
-const Op = models.Sequelize.Op;
-var moment = require('moment');
+
+const { Op } = models.Sequelize;
 
 module.exports = {
-  
+
   // POST a new lecturer
-  
+
   add(req, res) {
     return Lecturer
       .create({
         title: req.body.title,
         full_name: req.body.full_name,
         status: req.body.status,
-        start_date: req.body.start_date
-       })
-       .then((lecturer) => res.status(201).send(lecturer))
-       .catch((error) => res.status(400).send(error));
-    },
+        start_date: req.body.start_date,
+      })
+      .then((lecturer) => res.status(201).send(lecturer))
+      .catch((error) => res.status(400).send(error));
+  },
 
   // GET all lecturer
 
@@ -28,7 +29,7 @@ module.exports = {
       .findAll({
         include: [{
           model: Course,
-          as: 'course'
+          as: 'course',
         }],
         order: [
           ['createdAt', 'DESC'],
@@ -37,20 +38,20 @@ module.exports = {
       })
       .then((lecturer) => res.status(201).send(lecturer))
       .catch((error) => res.status(400).send(error));
-    },
+  },
 
   // GET a single lecturer by id
 
   getById(req, res) {
     return Lecturer
       .findOne({
-        where : {
-          id : req.params.id
+        where: {
+          id: req.params.id,
         },
         include: [{
           model: Course,
-          as: 'course'
-        }]
+          as: 'course',
+        }],
       })
       .then((lecturer) => {
         if (!lecturer) {
@@ -61,16 +62,16 @@ module.exports = {
         return res.status(200).send(lecturer);
       })
       .catch((error) => res.status(400).send(error));
-    },
+  },
 
   // PUT updated data in an existing lecturer
-  
+
   update(req, res) {
     return Lecturer
       .findOne({
-        where : {
-          id : req.params.id
-        }
+        where: {
+          id: req.params.id,
+        },
       })
       .then((lecturer) => {
         if (!lecturer) {
@@ -83,22 +84,22 @@ module.exports = {
             title: req.body.title,
             full_name: req.body.full_name,
             status: req.body.status,
-            start_date: req.body.start_date
+            start_date: req.body.start_date,
           })
           .then(() => res.status(200).send(lecturer))
           .catch((error) => res.status(400).send(error));
-       })
+      })
       .catch((error) => res.status(400).send(error));
-    },
+  },
 
   // DELETE a lecturer
 
   delete(req, res) {
     return Lecturer
       .findOne({
-        where : {
-          id : req.params.id
-        }
+        where: {
+          id: req.params.id,
+        },
       })
       .then((lecturer) => {
         if (!lecturer) {
@@ -112,7 +113,7 @@ module.exports = {
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
-    },
+  },
 
   // GET lecturers with job seniority greater than
 
@@ -121,14 +122,12 @@ module.exports = {
       .findAll({
         where: {
           start_date: {
-            [Op.lte]: moment().subtract(req.body.age, 'years')
-          }
-        }
+            [Op.lte]: moment().subtract(req.body.age, 'years'),
+          },
+        },
       })
       .then((student) => res.status(201).send(student))
       .catch((error) => res.status(400).send(error));
+  },
 
-},
-
-};        
-
+};
