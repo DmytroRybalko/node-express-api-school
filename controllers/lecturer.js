@@ -1,6 +1,10 @@
 const Lecturer = require('../models').Lecturer;
 const Course = require('../models').Course;
 
+const models = require('../models');
+const Op = models.Sequelize.Op;
+var moment = require('moment');
+
 module.exports = {
   
   // POST a new lecturer
@@ -108,6 +112,23 @@ module.exports = {
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
-    }
+    },
+
+  // GET lecturers with job seniority greater than
+
+  getJobSeniorityThreshold(req, res) {
+    return Lecturer
+      .findAll({
+        where: {
+          start_date: {
+            [Op.lte]: moment().subtract(req.body.age, 'years')
+          }
+        }
+      })
+      .then((student) => res.status(201).send(student))
+      .catch((error) => res.status(400).send(error));
+
+},
 
 };        
+

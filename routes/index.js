@@ -40,5 +40,6 @@ router.get('/lecturer', lecturerController.getAll);
 router.get('/lecturer/:id', lecturerController.getById);
 router.put('/lecturer/:id', lecturerController.update);
 router.delete('/lecturer/:id', lecturerController.delete);
+router.post('/lecturer/seniority', lecturerController.getJobSeniorityThreshold);
 
 module.exports = router;
