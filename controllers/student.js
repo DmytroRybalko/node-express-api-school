@@ -21,7 +21,12 @@ module.exports = {
 
   getAll(req, res) {
     return Student
-      .findAll({})
+      .findAll({
+        include: {
+          model: Group,
+          as: 'group'
+        }
+      })
       .then((student) => res.status(201).send(student))
       .catch((error) => res.status(400).send(error));
 
@@ -34,6 +39,10 @@ module.exports = {
       .findOne({
         where : {
           id : req.params.id
+        },
+        include: {
+          model: Group,
+          as: 'group'
         }
       })
       .then((student) => {
@@ -54,6 +63,10 @@ module.exports = {
       .findOne({
         where : {
           id : req.params.id
+        },
+        include: {
+          model: Group,
+          as: 'group'
         }
       })
       .then((student) => {
