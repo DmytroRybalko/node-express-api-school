@@ -1,6 +1,10 @@
 const Student = require('../models').Student;
 const Group = require('../models').Group;
 
+const models = require('../models');
+const Op = models.Sequelize.Op;
+
+
 module.exports = {
   
   // POST a new student    
@@ -22,10 +26,8 @@ module.exports = {
   getAll(req, res) {
     return Student
       .findAll({
-        include: {
-          model: Group,
-          as: 'group'
-        }
+        include: { model: Group,  as: 'group' },
+        order: [['avg_grade', 'DESC']]
       })
       .then((student) => res.status(201).send(student))
       .catch((error) => res.status(400).send(error));
@@ -109,5 +111,19 @@ module.exports = {
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
-  }
+  },
+
+// GET all students with rating greater than
+
+getAllRatingThreshold(req, res) {
+  return Student
+    .findAll({
+      where : { avg_grade : { [Op.gte]: req.body.avg_grade } }
+    })
+    .then((student) => res.status(201).send(student))
+    .catch((error) => res.status(400).send(error));
+
+},
+
 };        
+

@@ -18,6 +18,7 @@ router.get('/student', studentController.getAll);
 router.get('/student/:id', studentController.getById);
 router.put('/student/:id', studentController.update);
 router.delete('/student/:id', studentController.delete);
+router.post('/student/threshold', studentController.getAllRatingThreshold);
 
 /* Course Router */
 router.post('/course', courseController.add);
