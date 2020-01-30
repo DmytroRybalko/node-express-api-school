@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     Group.belongsToMany(models.Course, {
       through: 'GroupCourse',
-      as: 'groups',
+      as: 'courses',
       foreignKey: 'group_id'
     })
   };
